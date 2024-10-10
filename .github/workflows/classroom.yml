@@ -1,0 +1,48 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Diagrama
+      id: diagrama
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Diagrama
+        setup-command: ''
+        command: ls divisio_flux.pdf
+        timeout: 10
+        max-score: 1
+    - name: Execució
+      id: execucio
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Execució
+        setup-command: ''
+        command: python divisio.py
+        input: |-
+          23
+          8
+        expected-output: |-
+          Divisió: 23/8
+          Quocient: 2
+          Residu: 7
+        comparison-method: contains
+        timeout: 10
+        max-score: 1
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        DIAGRAMA_RESULTS: "${{steps.diagrama.outputs.result}}"
+        EXECUCIO_RESULTS: "${{steps.execucio.outputs.result}}"
+      with:
+        runners: diagrama,execucio
