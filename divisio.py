@@ -1,16 +1,16 @@
 # Demanem a l'usuari els nombres
-dividend = int(input("Escriu el dividend (nombre enter): "))
-divisor = int(input("Escriu el divisor (nombre enter): "))
+Dividend = int(input("Escriu el Dividend (nombre enter): "))
+Divisó = int(input("Escriu el Divisó (nombre enter): "))
 
 # Comprovem que el divisor no sigui zero
-if divisor == 0:
-    print("Error: No es pot calcular la divisió perquè el divisor no pot ser 0.")
+if Divisó == 0:
+    print("Error: No es pot calcular la Divisió perquè el divisor no pot ser 0.")
 else:
-    # Calculem el quocient i el residu
-    quocient = dividend // divisor
-    residu = dividend % divisor
+    # Calculem el Quocient i el Residu
+    Quocient = Dividend // Divisó
+    Residu = Dividend % Divisó
 
     # Mostrem els resultats
-    print(f"La divisió és: {dividend / divisor}")
-    print(f"Quocient: {quocient}")
-    print(f"Residu: {residu}")
+    print(f"La Divisió és: {Dividend}/{Divisó}")
+    print(f"Quocient: {Quocient}")
+    print(f"Residu: {Residu}")
